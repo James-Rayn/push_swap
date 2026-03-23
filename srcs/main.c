@@ -36,19 +36,35 @@ static t_stack *parse_args(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
+    int     start;
     t_stack *a;
     t_stack *b;
 
     if (argc < 2)
         return (0);
-    a = parse_args(argc, argv);
+    start = 1;
+    if (argv[1][0] == '-' && argv[1][1] == '-')
+        start = 2;
+    a = parse_args(argc - start + 1, argv + start - 1);
     if (!a)
     {
         write(2, "Error\n", 6);
         return (1);
     }
     b = init_stack();
-    sort_simple(a, b);
+    if (start == 2)
+    {
+        if (ft_strcmp(argv[1], "--simple") == 0)
+            sort_simple(a, b);
+        else if (ft_strcmp(argv[1], "--medium") == 0)
+            sort_medium(a, b);
+        else if (ft_strcmp(argv[1], "--complex") == 0)
+            sort_complex(a, b);
+        else
+            sort_adaptive(a, b);
+    }
+    else
+        sort_adaptive(a, b);
     free_stack(a);
     free_stack(b);
     return (0);

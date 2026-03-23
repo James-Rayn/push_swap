@@ -11,7 +11,10 @@ SRCS    = srcs/main.c \
           srcs/operations_rotate.c \
           srcs/operations_rrotate.c \
           srcs/utils.c \
-          srcs/sort_simple.c
+          srcs/sort_simple.c \
+          srcs/sort_medium.c \
+          srcs/sort_complex.c \
+          srcs/sort_adaptive.c
 
 OBJS    = $(SRCS:.c=.o)
 

@@ -28,6 +28,8 @@ void    rra(t_stack *a);
 void    rrb(t_stack *b);
 void    rrr(t_stack *a, t_stack *b);
 long    ft_atol(const char *str);
+int     ft_sqrt(int n);
+int    ft_strcmp(char *s1, char *s2);
 int     is_valid_int(char *str);
 int     is_in_range(char *str);
 int     has_duplicate(t_stack *s, int value);
@@ -39,5 +41,9 @@ int     find_max(t_stack *s);
 int     find_pos(t_stack *s, int value);
 void    push_max(t_stack *a, t_stack *b);
 void    sort_simple(t_stack *a, t_stack *b);
+void    sort_medium(t_stack *a, t_stack *b);
+void    sort_complex(t_stack *a, t_stack *b);
+void    sort_adaptive(t_stack *a, t_stack *b);
+void    normalize(t_stack *s);
 
 #endif
