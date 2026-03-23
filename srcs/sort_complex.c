@@ -13,7 +13,7 @@ int bit_count(int n)
     return (count);
 }
 
-void    sort_complex(t_stack *a, t_stack *b)
+void    sort_complex(t_stack *a, t_stack *b, t_bench *bench)
 {
     int i;
     int j;
@@ -30,16 +30,13 @@ void    sort_complex(t_stack *a, t_stack *b)
         while (j > 0)
         { 
             if (((a-> top-> value >> i) & 1) == 0)
-                pb(a, b);
+                pb(a, b, bench);
             else
-                ra(a);
+                ra(a, bench);
             j--;
         }
         while (b-> size > 0)
-        { 
-            pa(a, b);
-            //rra(a);
-        }
+            pa(a, b, bench);
         i++;
     }
 }

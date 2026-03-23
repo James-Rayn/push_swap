@@ -37,7 +37,7 @@ int find_pos(t_stack *s, int value)
     return (-1);
 }
 
-void    push_max(t_stack *a, t_stack *b)
+void    push_max(t_stack *a, t_stack *b, t_bench *bench)
 {
     int max;
     int pos;
@@ -49,20 +49,20 @@ void    push_max(t_stack *a, t_stack *b)
     if (pos <= mid)
     {
         while (a-> top-> value != max)
-            ra(a);
+            ra(a, bench);
     }
     else
     {
         while (a-> top-> value != max)
-            rra(a);
+            rra(a, bench);
     }
-    pb(a, b);
+    pb(a, b, bench);
 }
 
-void    sort_simple(t_stack *a, t_stack *b)
+void    sort_simple(t_stack *a, t_stack *b, t_bench *bench)
 {
     while (a-> size > 0)
-        push_max(a, b);
+        push_max(a, b, bench);
     while (b-> size > 0)
-        pa(a, b);
+        pa(a, b, bench);
 }

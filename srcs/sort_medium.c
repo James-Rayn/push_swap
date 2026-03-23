@@ -31,7 +31,7 @@ int chunk_size(t_stack *s)
     return(ft_sqrt(s-> size));
 }
 
-void    push_chunk(t_stack *a, t_stack *b, int min, int max)
+void    push_chunk(t_stack *a, t_stack *b, t_bench *bench, int min, int max)
 {
     int size;
 
@@ -41,13 +41,13 @@ void    push_chunk(t_stack *a, t_stack *b, int min, int max)
     while (size--)
     {
         if (a-> top-> value >= min && a-> top-> value <= max)
-            pb(a, b);
+            pb(a, b, bench);
         else
-            ra(a);
+            ra(a, bench);
     }
 }
 
-static void    push_max_from_b(t_stack *a, t_stack *b)
+static void    push_max_from_b(t_stack *a, t_stack *b, t_bench *bench)
 {
     int max;
     int pos;
@@ -59,17 +59,17 @@ static void    push_max_from_b(t_stack *a, t_stack *b)
     if (pos <= mid)
     {
         while (b-> top-> value != max)
-            rb(b);
+            rb(b, bench);
     }
     else
     {
         while (b-> top-> value != max)
-            rrb(b);
+            rrb(b, bench);
     }
-    pa(a, b);
+    pa(a, b, bench);
 }
 
-void    sort_medium(t_stack *a, t_stack *b)
+void    sort_medium(t_stack *a, t_stack *b, t_bench *bench)
 {
     int csize;
     int min;
@@ -83,10 +83,10 @@ void    sort_medium(t_stack *a, t_stack *b)
     max = csize - 1;
     while (a-> size > 0)
     {
-        push_chunk(a, b, min, max);
+        push_chunk(a, b, bench, min, max);
         min = max + 1;
         max = max + csize;
     }
     while(b-> size > 0)
-        push_max_from_b(a, b);
+        push_max_from_b(a, b, bench);
 }
