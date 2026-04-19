@@ -81,13 +81,33 @@ void    print_bench_operation(t_bench *bench)
     ft_putstr_fd("\n", 2);
 }
 
+void    print_strategy_complexity(char *strategy, double disorder)
+{
+    if (ft_strcmp(strategy, "simple") == 0)
+        ft_putstr_fd(" | O(n)", 2);
+    else if (ft_strcmp(strategy, "medium") == 0)
+        ft_putstr_fd(" | O(n sqrt n)", 2);
+    else if (ft_strcmp(strategy, "complex") == 0)
+        ft_putstr_fd(" | O(n log n)", 2);
+    else
+    {
+        if (disorder < 0.2)
+            ft_putstr_fd(" | O(n)", 2);
+        else if (disorder < 0.5)
+            ft_putstr_fd(" | O(n sqrt n)", 2);
+        else
+            ft_putstr_fd(" | O(n log n)", 2);
+    }
+}
+
 void    print_bench(t_bench *bench, double disorder, char *strategy)
 {
     ft_putstr_fd("disorder: ", 2);
-    ft_putdouble_fd(disorder, 2);
-    write(2, "\n", 1);
+    ft_putdouble_fd(disorder * 100, 2);
+    write(2, "%\n", 2);
     ft_putstr_fd("strategy: ", 2);
     ft_putstr_fd(strategy, 2);
+    print_strategy_complexity(strategy, disorder);
     write(2, "\n", 1);
     ft_putstr_fd("total_ops: ", 2);
     ft_putnbr_fd(total_operation(bench), 2);
